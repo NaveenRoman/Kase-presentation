@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KASE Startup Accelerator</title>
+<style>
+  /* Basic Reset and Styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #333;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  /* Header/Navbar */
+  header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo img {
+    height: 40px;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  nav ul li {
+    font-weight: 600;
+  }
+  nav ul li.connect-btn a {
+    background: #ffb500;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  /* Hero Section */
+  .hero {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    color: white;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+  }
+  .hero-content {
+    position: relative;
+    max-width: 600px;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+  }
+  .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  .hero-content .btn-apply {
+    background: #ffb500;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+    border: none;
+  }
+  /* Facilities section */
+  section.facilities {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  section.facilities h2 {
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+  .facility-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .facility-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    width: 220px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  }
+  .facility-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+  .facility-card h3 {
+    margin: 8px 0 6px;
+    font-size: 1.1rem;
+  }
+  .facility-card ul {
+    font-size: 0.9rem;
+    text-align: left;
+    padding-left: 18px;
+    margin: 0;
+  }
+  /* Startup logos */
+  .startups {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .startups img {
+    height: 60px;
+    object-fit: contain;
+  }
+  /* Performance Section */
+  section.performance {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  .performance-header {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .performance-item {
+    text-align: center;
+    border-right: 2px solid #f5a200;
+    padding: 0 20px;
+    flex: 1;
+  }
+  .performance-item:last-child {
+    border-right: none;
+  }
+  .performance-item strong {
+    display: block;
+    font-size: 2rem;
+    color: #f5a200;
+  }
+  .programs {
+    background: #f9f9f9;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+  }
+  .program {
+    margin-bottom: 15px;
+  }
+  .program strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .program ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  /* Partners & Testimonials */
+  section.partners-testimonials {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+  }
+  .partners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    align-items: center;
+  }
+  .partners img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .testimonials {
+    max-width: 600px;
+    margin: auto;
+    position: relative;
+  }
+  .testimonial-text {
+    font-size: 1rem;
+    line-height: 1.4;
+    background: #222;
+    color: white;
+    padding: 25px 20px 40px 20px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .testimonial-text::after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #f5a200;
+    border-radius: 4px;
+  }
+  .testimonial-author {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #f5a200;
+  }
+  .testimonial-nav {
+    margin-top: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .testimonial-nav span {
+    margin: 0 20px;
+  }
+  /* Focus Section */
+  section.focus {
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  section.focus h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px 20px;
+    margin-bottom: 40px;
+  }
+  .focus-grid img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    height: 100px;
+  }
+  /* Mentor Team */
+  .mentor-team {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .mentor {
+    width: 120px;
+    text-align: center;
+  }
+  .mentor img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+  }
+  .mentor-name {
+    font-weight: 600;
+  }
+  /* Events Section */
+  section.events {
+    max-width: 900px;
+    margin: 40px auto 80px;
+    text-align: center;
+  }
+  section.events h2 {
+    font-weight: 700;
+    margin-bottom: 25px;
+  }
+  .events-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .event-card {
+    background: #222;
+    color: #fff;
+    width: 270px;
+    border-radius: 12px;
+    padding: 15px 20px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 110px;
+    background-size: cover;
+    background-position: center;
+  }
+  .event-info {
+    background: rgba(0,0,0,0.5);
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-align: left;
+  }
+  .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  .event-time {
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+  .event-arrow {
+    position: absolute;
+    right: 10px;
+    bottom: 12px;
+    font-size: 1.8rem;
+  }
+  /* Newsletter */
+  .newsletter {
+    background: linear-gradient(90deg, #6f00ff 0%, #ffb500 100%);
+    padding: 25px 20px;
+    color: white;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+  }
+  .newsletter input[type=email] {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    flex: 1 1 250px;
+    font-size: 1rem;
+  }
+  .newsletter button {
+    background: #3100a8;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+  }
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+  .social-icons a {
+    color: white;
+    font-size: 1.4rem;
+  }
+  /* Footer */
+  footer {
+    background: #3100a8;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9rem;
+  }
+  /* Responsive */
+  @media (max-width: 768px) {
+    .facility-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+    .partners {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .performance-header {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .performance-item {
+      border-right: none !important;
+      padding: 10px 0;
+    }
+    .events-cards {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img src="https://i.imgur.com/UGE4vZO.png" alt="KASE Logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#">Startups</a></li>
+      <li><a href="#">Programs</a></li>
+      <li><a href="#">About</a></li>
+      <li class="connect-btn"><a href="#">Connect</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" aria-label="Hero Section">
+  <div class="hero-content">
+    <h1>One of a kind <br> Startup Accelerator</h1>
+    <p>Committed to empowering communities, KASE is a business incubator that supports social ventures dedicated to making a positive social and environmental impact.</p>
+    <button class="btn-apply" aria-label="Apply">Apply</button>
+  </div>
+</section>
+
+<!-- Facilities Provided & Our Startups -->
+<section class="facilities" aria-label="Facilities Provided and Our Startups">
+  <h2>FACILITIES PROVIDED</h2>
+  <div class="facility-cards" role="list">
+    <article class="facility-card" role="listitem">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=60" alt="Mentorship session" />
+      <h3>Guided mentorship</h3>
+      <ul>
+        <li>Innovation leads will be guiding the entrepreneurs</li>
+        <li>Routine classes and follow ups will be taken.</li>
+      </ul>
+    </article>
+    <article class="facility-card" role="listitem">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=60" alt="Makers lab" />
+      <h3>Makers lab</h3>
+      <ul>
+        <li>3D printing and various machines are accessible to our students</li>
+      </ul>
+    </article>
+    <article class="facility-card" role="listitem">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=60" alt="Co-working space" />
+      <h3>Co-working space</h3>
+      <ul>
+        <li>Comfortable and cozy working spaces are available</li>
+        <li>Extra space is allotted on team size</li>
+      </ul>
+    </article>
+  </div>
+
+  <h2>OUR STARTUPS</h2>
+  <div class="startups" aria-label="Startup logos">
+    <img src="Assets/Componova.jpg" alt="Componova logo" />
+    <img src="Assets/vaarahi.png" alt="Vaarahi logo" />
+    <img src="Assets/Zenith.png" alt="Faithful dip solutions logo" />
+    <img src="Assets/advertising.jpg" alt="Envarda logo" />
+    <img src="Assets/navedhana.jpg" alt="NPA logo" />
+  </div>
+</section>
+
+<!-- Performance & Programs -->
+<section class="performance" aria-label="Performance & Programs">
+  <div class="performance-header" role="list">
+    <div class="performance-item" role="listitem">
+      <div><strong>12+</strong></div>
+      <div>Startups</div>
+    </div>
+    <div class="performance-item" role="listitem">
+      <div><strong>1 Cr+</strong></div>
+      <div>Fund Raised</div>
+    </div>
+    <div class="performance-item" role="listitem">
+      <div><strong>22+</strong></div>
+      <div>Mentors</div>
+    </div>
+  </div>
+
+  <div class="programs">
+    <div class="program">
+      <strong>Incubation :</strong>
+      <ul>
+        <li>Our startup incubation program is designed to turn bold ideas into market-ready brands with expert marketing support.</li>
+        <li>From strategy to visibility, we help you craft your brand, reach your audience, and scale faster.</li>
+      </ul>
+    </div>
+    <div class="program">
+      <strong>Accelerator :</strong>
+      <ul>
+        <li>Our startup accelerator program fast-tracks your growth with intensive mentorship, funding access, and market-focused strategies.</li>
+        <li>In just a few months, we help you refine your product, sharpen your pitch, and connect with key investors and customers.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Partners and Testimonials -->
+<section class="partners-testimonials" aria-label="Partners and Testimonials">
+  <h2>PARTNERS</h2>
+  <div class="partners" role="list">
+    <img src="Assets/osmani.png" alt="Sattva foundation logo" role="listitem" />
+    <img src="Assets/wehub.png" alt="IIM logo" role="listitem" />
+    <img src="Assets/bala.png" alt="FM logo" role="listitem" />
+    <img src="Assets/palle.png" alt="AGRI logo" role="listitem" />
+    <img src="Assets/aghub.png" alt="Kala kshetra logo" role="listitem" />
+    <img src="Assets/kakatiya.png" alt="AIIC-IIITH logo" role="listitem" />
+    <img src="Assets/aic.png" alt="NDA logo" role="listitem" />
+    <img src="Assets/plus.png" alt="PALS logo" role="listitem" />
+  </div>
+
+  <h2>TESTIMONIALS</h2>
+  <div class="testimonials" aria-live="polite" aria-atomic="true">
+    <div class="testimonial-text" id="testimonial-text">
+      “Joined this accelerator a few months back. The great exchange & live mentorship and support really helped me get my startup off the ground.”
+      <div class="testimonial-author">- Jason</div>
+    </div>
+    <div class="testimonial-nav" role="navigation" aria-label="Testimonial navigation">
+      <span id="prev" tabindex="0" aria-label="Previous testimonial" role="button">←</span>
+      <span id="next" tabindex="0" aria-label="Next testimonial" role="button">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- Our Focus & Mentor Team -->
+<section class="focus" aria-label="Our Focus and Mentor Team">
+  <h2>OUR FOCUS</h2>
+  <div class="focus-grid">
+    <img src="Assets/Agriculture.png" alt="Nature and sustainability" />
+    <img src="Assets/recycle.png" alt="Recycling and environment" />
+    <img src="Assets/justice.png" alt="Justice scale" />
+    <img src="Assets/smart.png" alt="Smart technologies" />
+    <img src="Assets/education.png" alt="Education and innovation" />
+    <img src="Assets/team.png" alt="Team collaboration" />
+  </div>
+
+  <h2>MENTOR TEAM</h2>
+  <div class="mentor-team">
+    <div class="mentor">
+      <img src="Assets/rohit.jpg" alt="Sri Aadil" />
+      <div class="mentor-name">Rohit-Director</div>
+    </div>
+    <div class="mentor">
+      <img src="Assets/satya.jpg" alt="Vinay RB" />
+      <div class="mentor-name">Satya-CEO</div>
+    </div>
+    <div class="mentor">
+      <img src="Assets/suresh.jpg" alt="Krishna Yadav" />
+      <div class="mentor-name">Suresh-Head_invovation</div>
+    </div>
+    <div class="mentor">
+      <img src="Assets/samuktha.jpg" alt="Sampath Panditha" />
+      <div class="mentor-name">Samyuktha-head center for mentor</div>
+    </div>
+    <div class="mentor">
+      <img src="Assets/mahesh.png
+      " alt="Mohankrishna" />
+      <div class="mentor-name">Mahesh-incubation Associate</div>
+    </div>
+  </div>
+</section>
+
+<!-- Events Section -->
+<section class="events" aria-label="Upcoming Events">
+  <h2>EVENTS</h2>
+  <div class="events-cards">
+    <div class="event-card" style="background-image: url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=600&q=80');" tabindex="0" aria-label="Introductory class offline 8:30 PM">
+      <div class="event-info">
+        <div class="event-title">Introductory class</div>
+        <div class="event-time">Offline 8:30 PM</div>
+      </div>
+      <div class="event-arrow">→</div>
+    </div>
+    <div class="event-card" style="background-image: url('https://images.unsplash.com/photo-1590080877779-478b918da257?auto=format&fit=crop&w=600&q=80');" tabindex="0" aria-label="Mentor insights online 11:00 AM">
+      <div class="event-info">
+        <div class="event-title">Mentor insights</div>
+        <div class="event-time">Online 11:00 AM</div>
+      </div>
+      <div class="event-arrow">→</div>
+    </div>
+    <div class="event-card" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80');" tabindex="0" aria-label="Networking meet offline 2:15 PM">
+      <div class="event-info">
+        <div class="event-title">Networking meet</div>
+        <div class="event-time">Offline 2:15 PM</div>
+      </div>
+      <div class="event-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter" aria-label="Newsletter Subscription">
+  <label for="email" class="visually-hidden">Email address</label>
+  <input type="email" id="email" name="email" placeholder="email address" aria-required="true" />
+  <button type="submit">SUBSCRIBE</button>
+  <nav class="social-icons" aria-label="Social Media Links">
+    <a href="#" aria-label="Facebook" title="Facebook">&#x1F464;</a>
+    <a href="#" aria-label="LinkedIn" title="LinkedIn">&#x1F464;</a>
+    <a href="#" aria-label="Instagram" title="Instagram">&#x1F464;</a>
+    <a href="#" aria-label="Twitter" title="Twitter">&#x1F464;</a>
+    <a href="#" aria-label="YouTube" title="YouTube">&#x1F464;</a>
+  </nav>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>Moinabad PS, 500048 - Telangana</p>
+</footer>
+
+</body>
+</html>
