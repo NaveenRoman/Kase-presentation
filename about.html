@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Kase Global Accelerator</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJdZ6M1Zg491MmtG+n5l/sFp9u6K+8o8/7m5e3u/w2e/g41Z6y/h4aD5g5i0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Light Theme Color Variables & Global Styles --- */
+        :root {
+            --primary-color: #6d40a8; /* Rich Purple */
+            --secondary-color: #4c2d82; /* Darker Purple for containers/headers */
+            --accent-color: #fce347; /* Vibrant Gold/Yellow */
+            --background-light: #ffffff; /* Pure White/Light Background */
+            --text-dark: #1f2937; /* Very Dark Gray for text */
+            --card-light: #f9fafb; /* Off-white for cards/sections */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-light); /* Switched to light background */
+            color: var(--text-dark); /* Switched to dark text */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* Subtle texture overlay for professionalism - reduced opacity for light theme */
+            background-image: radial-gradient(circle at 50% 50%, rgba(109, 64, 168, 0.03) 1%, transparent 10%), 
+                              radial-gradient(circle at 0% 100%, rgba(252, 227, 71, 0.02) 1%, transparent 15%);
+        }
+
+        /* --- Header/Nav Styles --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95); /* Nearly opaque white background */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for light theme */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* --- Gradient Text Effect (Stays the same) --- */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--primary-color); /* Fallback */
+        }
+
+        /* --- Custom Buttons --- */
+        .btn {
+            display: inline-block;
+            border-radius: 9999px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .btn.primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 6px 25px rgba(109, 64, 168, 0.4); /* Less intense shadow */
+            border: 2px solid var(--primary-color);
+        }
+        .btn.primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(109, 64, 168, 0.6);
+        }
+        .btn.outline {
+            border: 2px solid var(--primary-color); /* Used primary color for outline on light background */
+            color: var(--primary-color);
+            background-color: transparent;
+        }
+        .btn.outline:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(109, 64, 168, 0.3);
+        }
+
+        /* Feature Card Hover Effect - Adjusted for light background */
+        .feature-card {
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(109, 64, 168, 0.2); /* Subtle lift effect */
+            border-color: var(--primary-color);
+        }
+
+        /* Timeline Specific Styling - Adjusted for light background */
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0.5rem;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0.1rem;
+            top: 0.75rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            border: 3px solid var(--background-light); /* Border uses light background color */
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+  <header>
+  <nav class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+    <!-- Logo -->
+    <a href="#" class="gradient-text text-3xl font-extrabold tracking-widest" aria-label="Kase Home">KASE</a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-8 text-sm font-semibold text-gray-700">
+      <li><a href="index.html" class="hover:text-purple-600 nav-btn py-1 border-b-2 border-transparent hover:border-purple-600 transition duration-200">Home</a></li>
+      <li><a href="about.html" class="hover:text-purple-600 nav-btn py-1 border-b-2 border-transparent hover:border-purple-600 transition duration-200">About</a></li>
+      <li><a href="program.html" class="hover:text-purple-600 nav-btn py-1 border-b-2 border-transparent hover:border-purple-600 transition duration-200">Programs</a></li>
+      <li><a href="startup.html" class="hover:text-purple-600 nav-btn py-1 border-b-2 border-transparent hover:border-purple-600 transition duration-200">Startups</a></li>
+      <li><a href="apply.html" class="hover:text-purple-600 nav-btn py-1 border-b-2 border-transparent hover:border-purple-600 transition duration-200">Apply</a></li>
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none" aria-label="Toggle Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-200 md:hidden">
+      <ul class="flex flex-col text-center text-gray-700 text-sm font-semibold py-4 space-y-3">
+        <li><a href="index.html" class="block hover:text-purple-600">Home</a></li>
+        <li><a href="about.html" class="block hover:text-purple-600">About</a></li>
+        <li><a href="program.html" class="block hover:text-purple-600">Programs</a></li>
+        <li><a href="startup.html" class="block hover:text-purple-600">Startups</a></li>
+        <li><a href="apply.html" class="block hover:text-purple-600">Apply</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- Script to toggle mobile menu -->
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('hidden', !menuOpen);
+    menuBtn.innerHTML = menuOpen
+      ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg>`
+      : `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+         </svg>`;
+  });
+</script>
+
+
+    <main>
+       <!-- 1. About Hero Section -->
+<section class="relative pt-24 pb-16 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <div class="container mx-auto px-6 text-center relative z-10">
+        <p class="text-xl text-purple-600 font-semibold mb-3 tracking-widest uppercase">Our Core Story</p>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight text-gray-900">
+            Igniting <span class="bg-gradient-to-r from-[#632e96] to-[#c47aff] bg-clip-text text-transparent">Global Change.</span>
+        </h1>
+        <p class="max-w-4xl mx-auto text-xl text-gray-700 mb-10">
+            Kase was founded on the belief that the world's biggest challenges require the world's most innovative minds. We accelerate mission-driven companies ready to pivot from potential to global impact.
+        </p>
+        <button id="impactBtn" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white font-semibold rounded-full shadow-lg transition-all duration-300">
+            <i class="fas fa-hand-holding-heart mr-2"></i> See Our Impact Report
+        </button>
+    </div>
+
+    <!-- Abstract background element -->
+    <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(circle at 70% 30%, #632e96 0%, transparent 40%);"></div>
+</section>
+
+<!-- Impact Report Modal -->
+<div id="impact-modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-3xl p-8 max-w-3xl w-full relative shadow-2xl">
+        <button id="impact-close" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
+        <h2 class="text-3xl font-bold mb-6 text-gray-900 text-center">Annual Startup Impact</h2>
+        <canvas id="startupChart" class="rounded-xl shadow-inner mb-6"></canvas>
+        <p class="text-gray-700 text-center">
+            Over the years, Kase has accelerated a growing number of mission-driven startups globally, providing mentorship, funding, and resources to help them scale their impact.
+        </p>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const impactBtn = document.getElementById('impactBtn');
+const impactModal = document.getElementById('impact-modal');
+const impactClose = document.getElementById('impact-close');
+
+impactBtn.addEventListener('click', () => {
+    impactModal.classList.remove('hidden');
+    renderChart();
+});
+impactClose.addEventListener('click', () => impactModal.classList.add('hidden'));
+impactModal.addEventListener('click', e => { if(e.target.id === 'impact-modal') impactModal.classList.add('hidden'); });
+
+let startupChart;
+function renderChart() {
+    const ctx = document.getElementById('startupChart').getContext('2d');
+    
+    // Example data
+    const dataValues = [12, 25, 32, 40, 50, 60];
+    
+    // Interpolate colors from red to violet
+    function interpolateColor(value, min, max) {
+        const startColor = [255, 0, 0];      // Red
+        const endColor = [128, 0, 255];      // Violet
+        const ratio = (value - min) / (max - min);
+        const r = Math.round(startColor[0] + ratio * (endColor[0] - startColor[0]));
+        const g = Math.round(startColor[1] + ratio * (endColor[1] - startColor[1]));
+        const b = Math.round(startColor[2] + ratio * (endColor[2] - startColor[2]));
+        return `rgb(${r},${g},${b})`;
+    }
+
+    const minValue = Math.min(...dataValues);
+    const maxValue = Math.max(...dataValues);
+    const barColors = dataValues.map(v => interpolateColor(v, minValue, maxValue));
+
+    if(startupChart) startupChart.destroy();
+
+    startupChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+            datasets: [{
+                label: 'Startups Accelerated',
+                data: dataValues,
+                backgroundColor: barColors,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { 
+                y: { beginAtZero: true }, 
+                x: { grid: { display: false } } 
+            },
+            animation: {
+                duration: 1500,
+                easing: 'easeOutBounce'
+            }
+        }
+    });
+}
+</script>
+
+<style>
+#impact-modal { display: flex; }
+#impact-modal.hidden { display: none; }
+</style>
+
+
+        <!-- Divider adjusted to light gray -->
+        <hr class="border-t-2 border-gray-200 mx-auto w-11/12">
+
+        <!-- 2. Mission & Vision - Deep Purple & Gold Theme -->
+<section id="mission-vision" class="py-24 px-6 bg-gradient-to-b from-[#1E003D] via-[#2D046E] to-[#3B0A94] text-white">
+    <div class="container mx-auto grid lg:grid-cols-3 gap-12 items-start">
+        
+        <!-- Mission Title Block -->
+        <div class="lg:col-span-1">
+            <h2 class="text-5xl font-extrabold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent border-b-4 border-yellow-400/70 pb-3 inline-block">
+                Our Mission
+            </h2>
+            <p class="text-lg text-yellow-100 mt-4">The drive that pushes us forward.</p>
+        </div>
+
+        <!-- Mission & Vision Cards -->
+        <div class="lg:col-span-2 space-y-8">
+            
+            <!-- Mission Card -->
+            <div class="p-8 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-2xl shadow-xl border-l-8 border-yellow-400 hover:scale-[1.02] transition-transform duration-300">
+                <i class="fas fa-bullseye text-4xl text-yellow-400 mb-4 block drop-shadow-md"></i>
+                <h3 class="text-3xl font-bold text-yellow-300 mb-4">Mission: Unlocking Scale</h3>
+                <p class="text-gray-200 leading-relaxed">
+                    Our mission is to be a catalyst for positive change by providing a nurturing ecosystem that supports
+                    social entrepreneurs working in alignment with our thrust areas. Through targeted incubation, mentorship,
+                    and acceleration programs, we aim to cultivate groundbreaking solutions that address pressing global
+                    challenges and enhance the well-being of individuals, communities, and the environment.
+                </p>
+            </div>
+
+            <!-- Vision Card -->
+            <div class="p-8 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-2xl shadow-xl border-l-8 border-yellow-400 hover:scale-[1.02] transition-transform duration-300">
+                <i class="fas fa-globe-americas text-4xl text-yellow-400 mb-4 block drop-shadow-md"></i>
+                <h3 class="text-3xl font-bold text-yellow-300 mb-4">Vision: A Better Future, Accelerated</h3>
+                <p class="text-gray-200 leading-relaxed">
+                    Our vision is to empower and transform communities through sustainable social entrepreneurship,
+                    where innovation and technology converge to address global challenges. We envision a world where
+                    Agriculture, Environment, Equity, Wellbeing, Education, and Accessibility Tech innovations thrive,
+                    fostering equitable growth and positive social impact.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        <!-- Divider adjusted to light gray -->
+        <hr class="border-t-2 border-gray-200 mx-auto w-3/4">
+
+        <!-- 3. Our History (Timeline) - Card backgrounds and text adjusted -->
+       <section id="history" class="py-24 px-6 bg-white">
+    <div class="container mx-auto">
+        <h2 class="text-5xl font-extrabold text-center mb-20 bg-gradient-to-r from-[#632e96] to-[#c47aff] bg-clip-text text-transparent">
+            A Decade of Milestones
+        </h2>
+
+        <div class="relative max-w-4xl mx-auto">
+
+            <!-- Vertical line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full border-l-4 border-purple-300"></div>
+
+            <!-- Timeline Items -->
+            <div class="timeline-item mb-12 relative flex justify-between items-start w-full opacity-0 translate-y-12 transition-all duration-700">
+                <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-purple-400 w-6 h-6 rounded-full border-4 border-white shadow-lg hover:scale-125 transition-transform duration-300"></div>
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 w-1/2 ml-auto">
+                    <span class="text-purple-600 font-bold text-lg block mb-2">2015: Inception</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">The Pilot Program</h4>
+                    <p class="text-gray-700">Kase is launched in a small hub in London, focusing on local fintech startups with social mission. First cohort size: 5 companies.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item mb-12 relative flex justify-between items-start w-full opacity-0 translate-y-12 transition-all duration-700">
+                <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-purple-400 w-6 h-6 rounded-full border-4 border-white shadow-lg hover:scale-125 transition-transform duration-300"></div>
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 w-1/2 mr-auto text-right">
+                    <span class="text-purple-600 font-bold text-lg block mb-2">2018: Global Expansion</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Asia Market Entry</h4>
+                    <p class="text-gray-700">We opened our first Asia-Pacific office and expanded our mentor network to include over 50 impact investors, tripling our program capacity.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item mb-12 relative flex justify-between items-start w-full opacity-0 translate-y-12 transition-all duration-700">
+                <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-purple-400 w-6 h-6 rounded-full border-4 border-white shadow-lg hover:scale-125 transition-transform duration-300"></div>
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 w-1/2 ml-auto">
+                    <span class="text-purple-600 font-bold text-lg block mb-2">2021: The First Unicorn</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Valuation Breakthrough</h4>
+                    <p class="text-gray-700">EcoStart, a climate-tech venture from our '19 cohort, achieved a $1.2B valuation, validating Kase's unique mission-first acceleration model.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item mb-12 relative flex justify-between items-start w-full opacity-0 translate-y-12 transition-all duration-700">
+                <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-purple-400 w-6 h-6 rounded-full border-4 border-white shadow-lg hover:scale-125 transition-transform duration-300"></div>
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 w-1/2 mr-auto text-right">
+                    <span class="text-purple-600 font-bold text-lg block mb-2">2024: Impact Fund Launch</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Kase Seed Fund I</h4>
+                    <p class="text-gray-700">Secured $150M for our dedicated seed fund, allowing Kase to offer more competitive funding terms and stronger follow-on support for our cohorts.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Scroll Animation Script -->
+<script>
+const timelineItems = document.querySelectorAll('.timeline-item');
+
+function revealTimeline() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    timelineItems.forEach(item => {
+        const itemTop = item.getBoundingClientRect().top;
+
+        if(itemTop < triggerBottom) {
+            item.classList.add('opacity-100', 'translate-y-0');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealTimeline);
+window.addEventListener('load', revealTimeline);
+</script>
+
+<style>
+.timeline-dot {
+    transition: all 0.3s ease;
+}
+.timeline-item {
+    will-change: transform, opacity;
+}
+</style>
+
+        <!-- Divider adjusted to light gray -->
+        <hr class="border-t-2 border-gray-200 mx-auto w-3/4">
+
+       <!-- 4. Leadership Team - Deep Purple & Gold Theme -->
+<section id="leadership" class="py-24 px-6 bg-gradient-to-b from-[#1E003D] via-[#2D046E] to-[#3B0A94] text-white">
+    <div class="container mx-auto">
+        <h2 class="text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
+            Our Leadership Team
+        </h2>
+        <p class="text-center text-lg text-yellow-100 max-w-3xl mx-auto mb-16">
+            Meet the executives who champion our founders and ensure that every program we run maximizes both profit and positive global change.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Team Member 1 -->
+            <div class="feature-card p-6 rounded-2xl bg-[#2E0A5C]/80 backdrop-blur-sm border-2 border-yellow-400 text-center shadow-xl hover:scale-[1.03] transition-all duration-300">
+                <img src="Assets/rohit.jpg" alt="Profile of Rohit" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-yellow-400 object-cover" onerror="this.src='https://placehold.co/150x150/FFD700/2E0A5C?text=CEO'">
+                <h3 class="text-xl font-bold text-yellow-300 mb-1">Rohit</h3>
+                <p class="text-yellow-200 font-medium mb-3">Chief Executive Officer</p>
+                <p class="text-gray-200 text-sm">20+ years of experience scaling global non-profits and successful tech ventures.</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="feature-card p-6 rounded-2xl bg-[#2E0A5C]/80 backdrop-blur-sm border-2 border-yellow-400 text-center shadow-xl hover:scale-[1.03] transition-all duration-300">
+                <img src="Assets/suresh.jpg" alt="Profile of Suresh" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-yellow-400 object-cover" onerror="this.src='https://placehold.co/150x150/FFD700/2E0A5C?text=CTO'">
+                <h3 class="text-xl font-bold text-yellow-300 mb-1">Suresh</h3>
+                <p class="text-yellow-200 font-medium mb-3">Chief Technology Officer</p>
+                <p class="text-gray-200 text-sm">Leads our AI-driven impact measurement and technical integration strategy.</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="feature-card p-6 rounded-2xl bg-[#2E0A5C]/80 backdrop-blur-sm border-2 border-yellow-400 text-center shadow-xl hover:scale-[1.03] transition-all duration-300">
+                <img src="https://placehold.co/150x150/FFD700/2E0A5C?text=CFO" alt="Profile of Tharun" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-yellow-400 object-cover">
+                <h3 class="text-xl font-bold text-yellow-300 mb-1">Tharun</h3>
+                <p class="text-yellow-200 font-medium mb-3">Chief Financial Officer</p>
+                <p class="text-gray-200 text-sm">Oversees the Kase Seed Fund and investor relations globally.</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="feature-card p-6 rounded-2xl bg-[#2E0A5C]/80 backdrop-blur-sm border-2 border-yellow-400 text-center shadow-xl hover:scale-[1.03] transition-all duration-300">
+                <img src="https://placehold.co/150x150/FFD700/2E0A5C?text=COO" alt="Profile of Vivek" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-yellow-400 object-cover">
+                <h3 class="text-xl font-bold text-yellow-300 mb-1">Vivek</h3>
+                <p class="text-yellow-200 font-medium mb-3">Chief Operating Officer</p>
+                <p class="text-gray-200 text-sm">Manages program logistics and the global mentor network activation.</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-yellow-300 hover:text-yellow-100 transition-colors" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+       <!-- 6. Behind-the-Scenes / Culture Section -->
+<section id="culture" class="py-24 px-6 bg-gray-50">
+    <div class="container mx-auto">
+        <h2 class="text-5xl font-extrabold text-center mb-6 gradient-text">
+            Behind the Scenes
+        </h2>
+        <p class="text-center text-gray-700 max-w-3xl mx-auto mb-16">
+            See our team in action! From mentoring sessions to demo days, experience the vibrant culture that powers Kase Global Accelerator.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Image Card 1 -->
+            <div class="relative overflow-hidden rounded-2xl shadow-xl transform transition-transform duration-500 hover:scale-105 group">
+                <img src="Assets/men.jpeg" alt="Demo Day 1" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+                    <h3 class="text-white font-semibold text-lg">Demo Day Highlights</h3>
+                </div>
+            </div>
+
+            <!-- Image Card 2 -->
+            <div class="relative overflow-hidden rounded-2xl shadow-xl transform transition-transform duration-500 hover:scale-105 group">
+                <img src="Assets/mentor.jpeg" alt="Mentoring Session" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+                    <h3 class="text-white font-semibold text-lg">Mentoring Sessions</h3>
+                </div>
+            </div>
+
+            <!-- Image Card 3 -->
+            <div class="relative overflow-hidden rounded-2xl shadow-xl transform transition-transform duration-500 hover:scale-105 group">
+                <img src="Assets/cospace.jpg" alt="Team Workshop" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+                    <h3 class="text-white font-semibold text-lg">Team Workshops</h3>
+                </div>
+            </div>
+
+            <!-- Image Card 4 -->
+            <div class="relative overflow-hidden rounded-2xl shadow-xl transform transition-transform duration-500 hover:scale-105 group">
+                <img src="Assets/team.png" alt="Network Event" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+                    <h3 class="text-white font-semibold text-lg">Networking Events</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Scroll reveal animation
+const cultureSection = document.querySelectorAll('#culture .group');
+
+function revealCulture() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cultureSection.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < triggerBottom) {
+            card.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            card.classList.remove('opacity-100', 'translate-y-0');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealCulture);
+window.addEventListener('load', revealCulture);
+</script>
+
+<style>
+#culture .group {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.7s ease-out;
+}
+#culture .group.opacity-100 {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+
+<!-- 8. Global Tracks & Compare Section - Deep Purple & Gold Theme -->
+<section id="global-tracks" class="py-24 px-6 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white">
+    <div class="container mx-auto">
+        <h2 class="text-5xl font-extrabold text-center mb-6 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
+            Track Our Global Impact
+        </h2>
+        <p class="text-center text-yellow-100 max-w-3xl mx-auto mb-12">
+            Explore how our startups are performing across different tracks worldwide. Click below to compare all tracks and see the growth over time.
+        </p>
+
+        <!-- Compare Button -->
+        <div class="text-center mb-12">
+            <button id="compareTracksBtn" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-purple-900 font-semibold rounded-full shadow-xl transition-all duration-300">
+                <i class="fas fa-chart-line mr-2"></i> Compare All Tracks
+            </button>
+        </div>
+
+        <!-- Track Graphs Container -->
+        <div id="tracksContainer" class="grid lg:grid-cols-3 gap-8 opacity-0 scale-95 transition-all duration-700">
+            <!-- Track Card Example -->
+            <div class="p-6 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-2xl shadow-lg border border-yellow-400 transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-xl font-bold text-yellow-300 mb-4">Fintech Track</h3>
+                <canvas id="fintechChart"></canvas>
+            </div>
+            <div class="p-6 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-2xl shadow-lg border border-yellow-400 transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-xl font-bold text-yellow-300 mb-4">Climate Tech Track</h3>
+                <canvas id="climateChart"></canvas>
+            </div>
+            <div class="p-6 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-2xl shadow-lg border border-yellow-400 transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-xl font-bold text-yellow-300 mb-4">EdTech Track</h3>
+                <canvas id="edtechChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const compareBtn = document.getElementById('compareTracksBtn');
+const tracksContainer = document.getElementById('tracksContainer');
+
+// Show and animate track cards on click
+compareBtn.addEventListener('click', () => {
+    tracksContainer.classList.remove('opacity-0', 'scale-95');
+    tracksContainer.classList.add('opacity-100', 'scale-100');
+    renderTracks();
+});
+
+// Function to render charts
+let fintechChart, climateChart, edtechChart;
+function renderTracks() {
+    // Destroy if charts exist
+    if(fintechChart) fintechChart.destroy();
+    if(climateChart) climateChart.destroy();
+    if(edtechChart) edtechChart.destroy();
+
+    const fintechCtx = document.getElementById('fintechChart').getContext('2d');
+    fintechChart = new Chart(fintechCtx, {
+        type: 'line',
+        data: {
+            labels: ['2019','2020','2021','2022','2023','2024'],
+            datasets: [{
+                label: 'Startups',
+                data: [5,12,18,25,32,40],
+                borderColor: 'rgba(99,46,150,0.9)',
+                backgroundColor: 'rgba(99,46,150,0.2)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+
+    const climateCtx = document.getElementById('climateChart').getContext('2d');
+    climateChart = new Chart(climateCtx, {
+        type: 'line',
+        data: {
+            labels: ['2019','2020','2021','2022','2023','2024'],
+            datasets: [{
+                label: 'Startups',
+                data: [2,8,15,22,30,36],
+                borderColor: 'rgba(198,122,255,0.9)',
+                backgroundColor: 'rgba(198,122,255,0.2)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+
+    const edtechCtx = document.getElementById('edtechChart').getContext('2d');
+    edtechChart = new Chart(edtechCtx, {
+        type: 'line',
+        data: {
+            labels: ['2019','2020','2021','2022','2023','2024'],
+            datasets: [{
+                label: 'Startups',
+                data: [1,6,10,18,24,30],
+                borderColor: 'rgba(252,227,71,0.9)',
+                backgroundColor: 'rgba(252,227,71,0.2)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+}
+</script>
+
+<style>
+#tracksContainer {
+    will-change: transform, opacity;
+}
+</style>
+
+
+
+        
+        <!-- Divider adjusted to light gray -->
+        <hr class="border-t-2 border-gray-200 mx-auto w-11/12">
+
+       <!-- 5. Final CTA - Background changed to white, border remains strong accent -->
+<section class="py-24 px-6 text-center bg-white">
+    <div class="max-w-4xl mx-auto p-12 rounded-3xl bg-gray-50 border-4 border-purple-500 shadow-xl shadow-purple-500/10">
+        <h2 class="text-5xl font-extrabold mb-6 bg-gradient-to-r from-[#632e96] to-[#c47aff] bg-clip-text text-transparent">
+            Ready to Join the Journey?
+        </h2>
+        <p class="text-xl text-gray-700 mb-10">
+            If your venture is ready for unprecedented scale and meaningful impact, the Kase Global Accelerator is your next step.
+        </p>
+        <div class="flex space-x-6 justify-center">
+            <!-- Apply Button: Smooth scroll to form on apply.html -->
+            <button id="applyBtn" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white font-semibold rounded-full shadow-lg transition-all duration-300">
+                <i class="fas fa-hand-point-right mr-2"></i> View Application Details
+            </button>
+
+            <!-- Contact Button: Open mail app to send email to Naveen -->
+            <a href="mailto:naveenrom232@gmail.com" class="inline-flex items-center px-6 py-3 border-2 border-purple-500 text-purple-600 font-semibold rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300">
+                <i class="fas fa-envelope mr-2"></i> Contact Us
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+// Smooth scroll to apply form
+document.getElementById('applyBtn').addEventListener('click', function() {
+    window.location.href = 'apply.html#applicationForm';
+});
+</script>
+
+    </main>
+
+    <!-- Footer - Background changed to light gray -->
+    <footer class="py-12 px-6 border-t border-gray-200 bg-gray-100">
+        <div class="container mx-auto text-center md:flex md:justify-between md:items-center">
+            <!-- Text color changed from gray-500 to gray-600 -->
+            <p class="text-gray-600 text-sm mb-4 md:mb-0">&copy; 2025 Kase Global Accelerator Program. All Rights Reserved.</p>
+            <!-- Icon colors changed from gray-400 to gray-500, hover to purple-600 -->
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Follow us on Twitter"><i class="fab fa-twitter text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin-in text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Visit our Blog"><i class="fas fa-blog text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
