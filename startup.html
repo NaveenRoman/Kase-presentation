@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kase Portfolio and Success</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Light Theme Color Variables --- */
+        :root {
+            --primary-color: #6d40a8; /* Rich Purple (Accent 1 - Stays same) */
+            --secondary-color: #f5f0fb; /* Very Light Purple/Card Background */
+            --accent-color: #fce347; /* Vibrant Gold/Yellow (Accent 2 - Stays same) */
+            --background-light: #ffffff; /* Main White Background */
+            --text-dark: #1f2937; /* Dark Grey/Black Text */
+            --shadow-color-light: rgba(109, 64, 168, 0.2); /* Lighter shadow */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark); /* Dark text for light background */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* Subtle texture overlay for professionalism (lighter version) */
+            background-image: radial-gradient(circle at 50% 50%, rgba(109, 64, 168, 0.03) 1%, transparent 10%), 
+                              radial-gradient(circle at 0% 100%, rgba(252, 227, 71, 0.03) 1%, transparent 15%);
+        }
+
+        /* --- Header/Nav Styles (Updated for light theme) --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95); /* Nearly opaque white */
+            box-shadow: 0 4px 15px var(--shadow-color-light); /* Lighter shadow */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        /* Ensure nav links are dark against the light header */
+        header nav a {
+            color: var(--text-dark);
+        }
+        header nav a.hover\:text-yellow-400:hover {
+            color: var(--accent-color);
+        }
+
+
+        /* --- Gradient Text Effect (Stays the same) --- */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--primary-color); /* Fallback */
+        }
+
+        /* --- Custom Buttons (Highly Polished) --- */
+        .btn {
+            display: inline-block;
+            border-radius: 9999px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .btn.primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 6px 25px var(--shadow-color-light);
+            border: 2px solid var(--primary-color);
+        }
+        .btn.primary:hover {
+            background: #4c2d82; /* Darker purple on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px var(--shadow-color-light);
+        }
+        .btn.outline {
+            /* Inverted for light theme: dark border, white background */
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background-color: transparent; 
+        }
+        .btn.outline:hover {
+            background: var(--primary-color); /* Primary background on hover */
+            color: white; /* White text on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--primary-color);
+        }
+
+        /* Feature Card Hover Effect */
+        .feature-card {
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* Reset dark shadow */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--shadow-color-light); /* Lighter hover shadow */
+            border-color: var(--accent-color);
+        }
+        
+        /* Specific styling for KPI/Metric cards */
+        .kpi-card {
+            background-color: var(--secondary-color); /* Light purple tint */
+            transition: all 0.3s ease;
+        }
+        .kpi-card:hover {
+            background-color: #ebe4f5; /* Slightly darker light purple on hover */
+            transform: scale(1.02);
+        }
+
+        /* --- Marquee Animation Styles (Stays the same) --- */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+
+        .marquee-track {
+            white-space: nowrap;
+            display: flex;
+            min-width: 200%; 
+            animation: marquee 45s linear infinite; 
+        }
+
+        .marquee-item {
+            padding-right: 4rem; 
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .marquee-item:hover {
+            opacity: 1;
+        }
+
+        .marquee-wrapper {
+            overflow: hidden; 
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+   <header>
+  <nav class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+    <!-- Logo -->
+    <a href="#" class="gradient-text text-3xl font-extrabold tracking-widest" aria-label="Kase Home">KASE</a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-8 text-sm font-semibold">
+      <li><a href="index.html" class="hover:text-yellow-400 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-400 transition duration-200">Home</a></li>
+      <li><a href="about.html" class="hover:text-yellow-400 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-400 transition duration-200">About</a></li>
+      <li><a href="program.html" class="hover:text-yellow-400 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-400 transition duration-200">Programs</a></li>
+      <li><a href="startup.html" class="hover:text-yellow-400 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-400 transition duration-200">Startups</a></li>
+      <li><a href="apply.html" class="hover:text-yellow-400 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-400 transition duration-200">Apply</a></li>
+    </ul>
+
+    <!-- Mobile Hamburger -->
+    <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-200 md:hidden">
+      <ul class="flex flex-col text-center text-gray-700 text-sm font-semibold py-4 space-y-3">
+        <li><a href="index.html" class="block hover:text-yellow-400">Home</a></li>
+        <li><a href="about.html" class="block hover:text-yellow-400">About</a></li>
+        <li><a href="program.html" class="block hover:text-yellow-400">Programs</a></li>
+        <li><a href="startup.html" class="block hover:text-yellow-400">Startups</a></li>
+        <li><a href="apply.html" class="block hover:text-yellow-400">Apply</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('hidden', !menuOpen);
+
+    // Toggle hamburger <-> X icon
+    menuBtn.innerHTML = menuOpen
+      ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg>`
+      : `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+         </svg>`;
+  });
+</script>
+
+
+
+
+    <main>
+        <!-- 1. Startups Hero Section (Light background) -->
+        <section class="relative pt-24 pb-16 bg-gradient-to-b from-purple-50/50 to-white overflow-hidden" role="region" aria-label="Kase Portfolio Overview">
+            <div class="container mx-auto px-6 text-center">
+                <p class="text-xl text-yellow-500 font-semibold mb-3 tracking-widest uppercase">Our Portfolio</p>
+                <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 leading-tight text-gray-900">
+                    Where Vision Meets <span class="gradient-text">Massive Scale.</span>
+                </h1>
+                <p class="max-w-4xl mx-auto text-xl text-gray-600 mb-10">
+                    Explore the mission-driven companies accelerating toward global systemic change through the Kase Global Accelerator.
+                </p>
+                <button class="btn primary">
+                    <i class="fas fa-chart-line mr-2"></i> View All 150+ Companies
+                </button>
+            </div>
+            <!-- Abstract background element -->
+            <div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(circle at 60% 40%, var(--primary-color) 0%, transparent 40%);"></div>
+        </section>
+
+        <!-- 4.5. Continuous Scrolling Startup Marquee (Light background, dark border) -->
+        <section id="startup-marquee" class="py-10 bg-gray-100 border-y-2 border-purple-300">
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <!-- List of startup names, duplicated for seamless loop -->
+                    
+                    <!-- Set 1 -->
+                    <span class="marquee-item gradient-text">Trinefly</span>
+                    <span class="marquee-item gradient-text">Componova</span>
+                    <span class="marquee-item gradient-text">Vaarahi</span>
+                    <span class="marquee-item gradient-text">Zenith Dri Solutions</span>
+                    <span class="marquee-item gradient-text">Envirak</span>
+                    <span class="marquee-item gradient-text">NPA Navedhana</span>
+                    <span class="marquee-item gradient-text">Sackhe</span>
+                    <span class="marquee-item gradient-text">Vaman</span>
+                    <span class="marquee-item gradient-text">RedSecOps</span>
+                    
+                    
+                    <!-- Set 2 (Duplication of Set 1) -->
+                  
+                    <span class="marquee-item gradient-text">Trinefly</span>
+                    <span class="marquee-item gradient-text">Componova</span>
+                    <span class="marquee-item gradient-text">Vaarahi</span>
+                    <span class="marquee-item gradient-text">Zenith Dri Solutions</span>
+                    <span class="marquee-item gradient-text">Envirak</span>
+                    <span class="marquee-item gradient-text">NPA Navedhana</span>
+                    <span class="marquee-item gradient-text">Sackhe</span>
+                    <span class="marquee-item gradient-text">Vaman</span>
+                    <span class="marquee-item gradient-text">RedSecOps</span>
+                    
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-purple-300 mx-auto w-11/12">
+
+        <!-- 2. Portfolio Metrics -->
+        <section id="metrics" class="py-24 px-6 bg-white">
+            <div class="container mx-auto">
+                <h2 class="text-5xl font-extrabold text-center mb-16 gradient-text">Our Collective Impact</h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Metric 1 (Uses light background variable) -->
+                    <div class="kpi-card p-8 rounded-2xl shadow-xl border-l-8 border-yellow-500 text-center feature-card">
+                        <p class="text-6xl font-black gradient-text mb-3">RS.1.8c+</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Total Follow-on Capital Raised</h3>
+                        <p class="text-gray-600 text-sm">Validating the financial viability of purpose-driven business models.</p>
+                    </div>
+
+                    <!-- Metric 2 -->
+                    <div class="kpi-card p-8 rounded-2xl shadow-xl border-l-8 border-yellow-500 text-center feature-card">
+                        <p class="text-6xl font-black gradient-text mb-3">8</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Impact Unicorns Created</h3>
+                        <p class="text-gray-600 text-sm">Companies achieving a RS.1c+ valuation while meeting critical social impact goals.</p>
+                    </div>
+
+                    <!-- Metric 3 -->
+                    <div class="kpi-card p-8 rounded-2xl shadow-xl border-l-8 border-yellow-500 text-center feature-card">
+                        <p class="text-6xl font-black gradient-text mb-3">15+</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Startups Accelerated</h3>
+                        <p class="text-gray-600 text-sm">Representing 40 countries and every major impact sector.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-purple-300 mx-auto w-3/4">
+
+        <!-- 3. Portfolio Spotlight (Light background, dark text) -->
+        <section id="spotlight" class="py-24 px-6 bg-gray-50">
+            <div class="container mx-auto">
+                <h2 class="text-5xl font-extrabold text-center mb-16 gradient-text">Spotlight: Our Transformative Alumni</h2>
+                
+                <div class="grid md:grid-cols-2 gap-10">
+
+                    <!-- Spotlight 1: Climate Tech (Light card, light border) -->
+                    <div class="p-8 rounded-2xl bg-white border-2 border-purple-300 feature-card flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6">
+                        <img src="https://placehold.co/100x100/f5f0fb/6d40a8?text=ECO" alt="EcoStart Logo" class="w-24 h-24 rounded-full border-4 border-yellow-500 flex-shrink-0 object-cover" onerror="this.src='https://placehold.co/100x100/f5f0fb/6d40a8?text=ECO'">
+                        <div class="flex-grow">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">EcoStart AI <span class="text-sm font-normal text-green-600">(Unicorn)</span></h3>
+                            <p class="text-purple-600 font-semibold mb-3"><i class="fas fa-tree mr-2"></i> Climate & Sustainability</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Developed a satellite-based AI platform that monitors deforestation rates in real-time, providing actionable data to governments and corporations. **Impact:** Protected 5 million hectares of rainforest since 2021.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Spotlight 2: Health Equity -->
+                    <div class="p-8 rounded-2xl bg-white border-2 border-purple-300 feature-card flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6">
+                        <img src="https://placehold.co/100x100/ffffff/6d40a8?text=MED" alt="MediAccess Logo" class="w-24 h-24 rounded-full border-4 border-yellow-500 flex-shrink-0 object-cover" onerror="this.src='https://placehold.co/100x100/ffffff/6d40a8?text=MED'">
+                        <div class="flex-grow">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">MediAccess Global</h3>
+                            <p class="text-purple-600 font-semibold mb-3"><i class="fas fa-heartbeat mr-2"></i> Health & Wellness</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                A mobile platform delivering affordable, personalized healthcare diagnostics to underserved communities across Sub-Saharan Africa. **Impact:** Serves 2 million monthly active users.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-purple-300 mx-auto w-3/4">
+
+        <!-- 4. Focus Impact Areas -->
+        <section id="focus-areas" class="py-24 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-5xl font-extrabold text-center mb-16 gradient-text">Our Core Impact Sectors</h2>
+                <p class="text-center text-lg text-gray-600 max-w-3xl mx-auto mb-16">
+                    Kase invests where systemic change is most needed and scalable technology can provide the solution.
+                </p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Area 1: Climate Tech (Light card, light border, dark text) -->
+                    <div class="p-6 bg-white rounded-xl border border-purple-300 text-center feature-card">
+                        <i class="fas fa-leaf text-5xl text-purple-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Climate Resilience</h3>
+                        <p class="text-gray-600 text-sm">Sustainable energy, circular economy, and carbon capture solutions.</p>
+                    </div>
+                    
+                    <!-- Area 2: Health Equity -->
+                    <div class="p-6 bg-white rounded-xl border border-purple-300 text-center feature-card">
+                        <i class="fas fa-medkit text-5xl text-purple-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Health Access</h3>
+                        <p class="text-gray-600 text-sm">Affordable diagnostics, tele-health for underserved populations, and mental wellness.</p>
+                    </div>
+
+                    <!-- Area 3: Future of Work -->
+                    <div class="p-6 bg-white rounded-xl border border-purple-300 text-center feature-card">
+                        <i class="fas fa-graduation-cap text-5xl text-purple-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Future of Education</h3>
+                        <p class="text-gray-600 text-sm">EdTech focused on vocational training, reskilling, and personalized learning pathways.</p>
+                    </div>
+
+                    <!-- Area 4: FinTech for Good -->
+                    <div class="p-6 bg-white rounded-xl border border-purple-300 text-center feature-card">
+                        <i class="fas fa-wallet text-5xl text-purple-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Financial Inclusion</h3>
+                        <p class="text-gray-600 text-sm">Access to fair credit, responsible investing, and secure digital finance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <hr class="border-t-2 border-purple-300 mx-auto w-11/12">
+
+        <!-- 5. Final CTA (Light card) -->
+        <section class="py-24 px-6 text-center">
+            <div class="max-w-4xl mx-auto p-12 rounded-3xl bg-white border-4 border-purple-400 shadow-3xl shadow-purple-500/10">
+                <h2 class="text-5xl font-extrabold mb-6 gradient-text">Do You See Your Venture Here?</h2>
+                <p class="text-xl text-gray-600 mb-10">
+                    We're constantly looking for the next game-changing, mission-aligned startup to join our highly selective portfolio.
+                </p>
+                <div class="flex space-x-6 justify-center">
+                    <button class="btn primary"><i class="fas fa-hand-point-up mr-2"></i> Submit Your Pitch</button>
+                    <button class="btn outline"><i class="fas fa-question-circle mr-2"></i> Read Our Funding FAQs</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 px-6 border-t border-purple-300 bg-gray-50">
+        <div class="container mx-auto text-center md:flex md:justify-between md:items-center">
+            <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 Kase Global Accelerator Program. All Rights Reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors" aria-label="Follow us on Twitter"><i class="fab fa-twitter text-xl"></i></a>
+                <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin-in text-xl"></i></a>
+                <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors" aria-label="Visit our Blog"><i class="fas fa-blog text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
