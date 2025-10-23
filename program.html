@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kase Global Accelerator Programs</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Color Variables & Global Styles (LIGHT THEME) --- */
+        :root {
+            --primary-color: #6d40a8; /* Rich Purple */
+            --secondary-color: #4c2d82; /* Darker Purple for deep accents */
+            --accent-color: #e5a700; /* Vibrant Gold/Yellow - Adjusted for contrast on white */
+            --background-light: #ffffff; /* Near White */
+            --text-dark: #1f2937; /* Dark gray/black text */
+            --card-light: #f8ffa; /* Subtle off-white for card backgrounds */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Header/Nav Styles --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95); /* Nearly opaque white background */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle, light shadow */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* --- Gradient Text Effect (Purple/Yellow on White BG) --- */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--primary-color); /* Fallback */
+        }
+
+        /* --- Custom Buttons (Highly Polished) --- */
+        .btn {
+            display: inline-block;
+            border-radius: 9999px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .btn.primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 6px 25px rgba(109, 64, 168, 0.4); /* Reduced shadow strength */
+            border: 2px solid var(--primary-color);
+        }
+        .btn.primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(109, 64, 168, 0.6);
+        }
+        .btn.outline {
+            border: 2px solid var(--primary-color); /* Primary color outline for visibility */
+            color: var(--primary-color);
+            background-color: transparent;
+        }
+        .btn.outline:hover {
+            background: var(--primary-color); /* Primary background on hover */
+            color: white; /* White text on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(109, 64, 168, 0.3);
+        }
+
+        /* Feature Card Hover Effect */
+        .feature-card {
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Lighter initial shadow */
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(109, 64, 168, 0.2); /* Lighter hover shadow */
+            border-color: var(--primary-color);
+        }
+        /* Custom styling for program cards */
+        .program-card-icon {
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+        /* Metric Card specific styling */
+        .metric-card {
+            background-color: white;
+            border-radius: 1.5rem; /* rounded-3xl */
+            padding: 2.5rem; /* p-10 */
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(109, 64, 168, 0.15);
+        }
+        /* Roadmap step styling */
+        .roadmap-step {
+            position: relative;
+            padding-top: 5rem; /* Space for the line and icons */
+        }
+        .roadmap-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Connectors between steps */
+            height: 4px;
+            background-color: #d1c4e9; /* Light purple line */
+            z-index: 0;
+        }
+        .roadmap-step:first-child::before {
+            left: 0;
+            transform: none;
+            width: 50%;
+        }
+        .roadmap-step:last-child::before {
+            left: 50%;
+            width: 50%;
+        }
+        /* Hide line on mobile */
+        @media (max-width: 768px) {
+            .roadmap-step::before {
+                display: none;
+            }
+            .roadmap-step {
+                padding-top: 0;
+                padding-left: 2rem;
+                border-left: 4px solid #d1c4e9;
+                margin-bottom: 2rem;
+            }
+            .roadmap-step-icon-container {
+                left: -1.25rem;
+                top: 0;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Nav text color inherits dark color from body -->
+            <a href="#" class="gradient-text text-3xl font-extrabold tracking-widest" aria-label="Kase Home">KASE</a>
+            <ul class="hidden md:flex space-x-8 text-sm font-semibold text-gray-700">
+                <li><a href="index.html" class="hover:text-yellow-600 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-600 transition duration-200">Home</a></li>
+                <li><a href="about.html" class="hover:text-yellow-600 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-600 transition duration-200">About</a></li>
+                <li><a href="program.html" class="hover:text-yellow-600 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-600 transition duration-200">Programs</a></li>
+                <li><a href="startup.html" class="hover:text-yellow-600 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-600 transition duration-200">Startups</a></li>
+                <li><a href="apply.html" class="hover:text-yellow-600 nav-btn py-1 border-b-2 border-transparent hover:border-yellow-600 transition duration-200">Apply</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- 1. Programs Hero Section -->
+<section class="relative pt-24 pb-16 bg-gradient-to-b from-white to-gray-50 text-center">
+    <div class="container mx-auto px-6">
+        <p class="text-xl text-purple-600 font-semibold mb-3 tracking-widest uppercase">Select Your Track</p>
+        <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+            Your Launchpad to <span class="gradient-text">Global Impact.</span>
+        </h1>
+        <p class="max-w-4xl mx-auto text-xl text-gray-700 mb-10">
+            Kase offers three distinct accelerator tracks, each meticulously designed to meet your mission-driven venture at its critical inflection point, from idea validation to billion-dollar scale.
+        </p>
+        <button id="compareTracksBtn" class="btn outline inline-flex items-center">
+            <i class="fas fa-arrow-alt-circle-right mr-2"></i> Compare All Tracks
+        </button>
+    </div>
+</section>
+
+<!-- 2. Tracks Timeline -->
+<!-- 2. Tracks Timeline -->
+<div id="tracksTimeline" class="relative max-w-5xl mx-auto opacity-0 translate-y-12 transition-all duration-700 my-24 
+    bg-gradient-to-b from-[#1E003D] via-[#2D046E] to-[#3B0A94] rounded-3xl shadow-2xl text-white p-10">
+
+    <!-- Vertical Line -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 h-full border-l-4 border-yellow-400/70"></div>
+
+    <!-- Progress Icons -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 w-12 flex flex-col items-center justify-between h-full pointer-events-none">
+        <i class="fas fa-lightbulb text-yellow-400 text-3xl drop-shadow-lg animate-bounce mb-4" title="Idea"></i>
+        <i class="fas fa-chart-line text-yellow-300 text-3xl drop-shadow-lg animate-bounce mb-4" title="Growth"></i>
+        <i class="fas fa-unicorn text-yellow-400 text-3xl drop-shadow-lg animate-bounce" title="Impact Unicorn"></i>
+    </div>
+
+    <!-- Track 1 -->
+    <div class="timeline-item mb-12 relative flex justify-between items-start w-full">
+        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-purple-500 w-6 h-6 rounded-full border-4 border-[#2D046E] shadow-xl hover:scale-125 transition-transform duration-300"></div>
+        <div class="p-8 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-xl shadow-lg border-l-8 border-yellow-400 w-1/2 ml-auto opacity-0 translate-x-12 transition-all duration-700">
+            <h3 class="text-3xl font-bold text-yellow-300 mb-4">Idea Validation Track</h3>
+            <p class="text-gray-200 mb-4">
+                For early-stage founders looking to validate their concept and prepare for initial funding. Gain mentorship, market insights, and prototype support.
+            </p>
+            <ul class="text-gray-300 text-sm space-y-2">
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Mentorship Sessions</li>
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Market Research Support</li>
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Prototype Development</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Track 2 -->
+    <div class="timeline-item mb-12 relative flex justify-between items-start w-full">
+        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-purple-500 w-6 h-6 rounded-full border-4 border-[#2D046E] shadow-xl hover:scale-125 transition-transform duration-300"></div>
+        <div class="p-8 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-xl shadow-lg border-l-8 border-yellow-400 w-1/2 mr-auto text-right opacity-0 -translate-x-12 transition-all duration-700">
+            <h3 class="text-3xl font-bold text-yellow-300 mb-4">Growth & Scaling Track</h3>
+            <p class="text-gray-200 mb-4">
+                Designed for ventures ready to expand operations and scale globally. Focus on product-market fit, team building, and operational efficiency.
+            </p>
+            <ul class="text-gray-300 text-sm space-y-2">
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Growth Strategy Workshops</li>
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Funding Guidance</li>
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Global Market Expansion</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Track 3 -->
+    <div class="timeline-item relative flex justify-between items-start w-full">
+        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-purple-500 w-6 h-6 rounded-full border-4 border-[#2D046E] shadow-xl hover:scale-125 transition-transform duration-300"></div>
+        <div class="p-8 bg-[#2E0A5C]/80 backdrop-blur-sm rounded-xl shadow-lg border-l-8 border-yellow-400 w-1/2 ml-auto opacity-0 translate-x-12 transition-all duration-700">
+            <h3 class="text-3xl font-bold text-yellow-300 mb-4">Impact Unicorn Track</h3>
+            <p class="text-gray-200 mb-4">
+                Tailored for high-growth ventures aiming for billion-dollar scale with measurable societal impact. Deep investor engagement and strategic partnerships.
+            </p>
+            <ul class="text-gray-300 text-sm space-y-2">
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Investor Introductions</li>
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Strategic Mentorship</li>
+                <li><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Impact Measurement Tools</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+// Reveal Timeline Animation
+const compareBtn = document.getElementById('compareTracksBtn');
+const timeline = document.getElementById('tracksTimeline');
+
+compareBtn.addEventListener('click', () => {
+    if (timeline.classList.contains('opacity-0')) {
+        timeline.classList.remove('opacity-0', 'translate-y-12');
+        timeline.classList.add('opacity-100', 'translate-y-0');
+
+        // Animate each card in sequence
+        const items = timeline.querySelectorAll('.timeline-item > div');
+        items.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.remove('opacity-0', 'translate-x-12', '-translate-x-12');
+                item.classList.add('opacity-100', 'translate-x-0');
+            }, index * 300);
+        });
+
+        timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+});
+</script>
+
+        <hr class="border-t-2 border-purple-300 mx-auto w-11/12">
+
+        <!-- 3. Program Tiers Section (Updated with Button Links) -->
+<section id="program-tiers" class="py-24 px-6 bg-gray-50">
+    <div class="container mx-auto">
+        <h2 class="text-5xl font-extrabold text-center mb-16 gradient-text">
+            Our Acceleration Tracks
+        </h2>
+
+        <div class="grid lg:grid-cols-3 gap-10">
+
+            <!-- Program 1: Seed Track -->
+            <div class="feature-card p-8 rounded-2xl bg-white border-2 border-purple-300 transform opacity-0 translate-y-12 transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <i class="fas fa-rocket text-6xl text-purple-600 mb-6 program-card-icon"></i>
+                <h3 class="text-3xl font-extrabold text-gray-900 mb-3">Seed Track: Ignite</h3>
+                <p class="text-gray-700 mb-6">
+                    For pre-seed ventures with strong founder-market fit. Focus on rapid prototyping and achieving minimum viable traction.
+                </p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> 6-Month Virtual Residency</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> $50k Non-Dilutive Grant</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> MVP Refinement & PMF Validation</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> Demo Day Access</li>
+                </ul>
+                <button class="btn primary mt-8 w-full text-sm" onclick="scrollToTrack('ignite')">
+                    Learn About Ignite
+                </button>
+            </div>
+
+            <!-- Program 2: Scale Track -->
+            <div class="feature-card p-8 rounded-2xl bg-white border-2 border-purple-300 transform opacity-0 translate-y-12 transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <i class="fas fa-tachometer-alt text-6xl text-purple-600 mb-6 program-card-icon"></i>
+                <h3 class="text-3xl font-extrabold text-gray-900 mb-3">Scale Track: Accelerate</h3>
+                <p class="text-gray-700 mb-6">
+                    For post-seed companies with established revenue and product-market fit. Focus on hyper-growth and global expansion.
+                </p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> 9-Month Hybrid Program</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> $250k Seed Investment Offer</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> Series A Investor Roadshows</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> International Market Entry Support</li>
+                </ul>
+                <button class="btn primary mt-8 w-full text-sm" onclick="scrollToTrack('accelerate')">
+                    Apply for Accelerate
+                </button>
+            </div>
+
+            <!-- Program 3: Impact Fund Track -->
+            <div class="feature-card p-8 rounded-2xl bg-white border-2 border-purple-300 transform opacity-0 translate-y-12 transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <i class="fas fa-star text-6xl text-purple-600 mb-6 program-card-icon"></i>
+                <h3 class="text-3xl font-extrabold text-gray-900 mb-3">Impact Fund: Unicorn</h3>
+                <p class="text-gray-700 mb-6">
+                    Exclusive track for late-stage ventures targeting transformative, systemic impact on a global scale.
+                </p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> Bespoke Duration (12+ Months)</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> Multi-Million Dollar Capital</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> Dedicated Executive Coaching</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-purple-600 mr-2"></i> Global Policy & Partnerships</li>
+                </ul>
+                <button class="btn primary mt-8 w-full text-sm" onclick="scrollToTrack('unicorn')">
+                    Inquire for Unicorn
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Scroll Animation Script for Program Cards -->
+<script>
+const programCards = document.querySelectorAll('.feature-card');
+
+function revealProgramCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+    programCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) {
+            card.classList.add('opacity-100', 'translate-y-0');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealProgramCards);
+window.addEventListener('load', revealProgramCards);
+
+// Smooth scroll function for buttons
+function scrollToTrack(trackId) {
+    // Check if the target element exists
+    const target = document.getElementById(trackId);
+    if(target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        // Fallback: redirect to apply.html with hash
+        window.location.href = `apply.html#${trackId}`;
+    }
+}
+</script>
+
+
+        <hr class="border-t-2 border-purple-300 mx-auto w-3/4">
+
+      <!-- 4. Key Program Features (Differentiating Factors) -->
+<section id="features" class="py-24 px-6 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white">
+  <div class="container mx-auto">
+    <h2 class="text-5xl font-extrabold text-center mb-16 text-yellow-400 animate-fade-in">
+      What Sets Kase Apart?
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-10">
+      <!-- Feature 1 -->
+      <div
+        class="text-center p-8 bg-purple-950/40 rounded-2xl shadow-lg border border-purple-700 hover:scale-105 transition-transform duration-500 animate-slide-up"
+      >
+        <i class="fas fa-users text-5xl text-yellow-400 mb-4"></i>
+        <h3 class="text-2xl font-bold mb-3 text-yellow-300">The Kase Network</h3>
+        <p class="text-gray-200 leading-relaxed">
+          Access to a curated global network of 300+ mentors, industry experts,
+          and impact investors ready to open doors.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div
+        class="text-center p-8 bg-purple-950/40 rounded-2xl shadow-lg border border-purple-700 hover:scale-105 transition-transform duration-500 animate-slide-up delay-150"
+      >
+        <i class="fas fa-bolt text-5xl text-yellow-400 mb-4"></i>
+        <h3 class="text-2xl font-bold mb-3 text-yellow-300">Impact Intelligence</h3>
+        <p class="text-gray-200 leading-relaxed">
+          Proprietary AI-driven tools to rigorously measure, optimize, and report
+          on your societal and environmental impact.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div
+        class="text-center p-8 bg-purple-950/40 rounded-2xl shadow-lg border border-purple-700 hover:scale-105 transition-transform duration-500 animate-slide-up delay-300"
+      >
+        <i class="fas fa-handshake text-5xl text-yellow-400 mb-4"></i>
+        <h3 class="text-2xl font-bold mb-3 text-yellow-300">Dedicated Capital</h3>
+        <p class="text-gray-200 leading-relaxed">
+          Direct investment from the Kase Seed Fund I, ensuring alignment with
+          mission from day one.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom Animations -->
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-in-out;
+}
+.animate-slide-up {
+  animation: slide-up 1.2s ease-out forwards;
+}
+.delay-150 { animation-delay: 0.15s; }
+.delay-300 { animation-delay: 0.3s; }
+</style>
+
+        <hr class="border-t-2 border-purple-300 mx-auto w-11/12">
+
+        <!-- 5. Metrics / Impact Highlights (Data-Driven Credibility) -->
+        <section id="metrics" class="py-24 px-6 bg-purple-50">
+            <div class="container mx-auto">
+                <h2 class="text-5xl font-extrabold text-center mb-6 text-gray-900">
+                    Impact by the Numbers
+                </h2>
+                <p class="max-w-3xl mx-auto text-center text-xl text-gray-700 mb-16">
+                    Our success is measured by the tangible growth and positive global change created by our alumni ventures.
+                </p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Metric 1: Total Funding Raised -->
+                    <div class="metric-card">
+                        <i class="fas fa-dollar-sign text-5xl text-purple-600 mb-4"></i>
+                        <p class="text-6xl font-black gradient-text mb-2">$250M+</p>
+                        <p class="text-gray-700 font-semibold uppercase tracking-wider">Total Funding Raised</p>
+                    </div>
+
+                    <!-- Metric 2: Companies Accelerated -->
+                    <div class="metric-card">
+                        <i class="fas fa-graduation-cap text-5xl text-purple-600 mb-4"></i>
+                        <p class="text-6xl font-black gradient-text mb-2">120+</p>
+                        <p class="text-gray-700 font-semibold uppercase tracking-wider">Companies Accelerated</p>
+                    </div>
+
+                    <!-- Metric 3: Follow-on Funding Rate -->
+                    <div class="metric-card">
+                        <i class="fas fa-chart-pie text-5xl text-purple-600 mb-4"></i>
+                        <p class="text-6xl font-black gradient-text mb-2">92%</p>
+                        <p class="text-gray-700 font-semibold uppercase tracking-wider">Follow-on Funding Rate</p>
+                    </div>
+
+                    <!-- Metric 4: Jobs Created -->
+                    <div class="metric-card">
+                        <i class="fas fa-briefcase text-5xl text-purple-600 mb-4"></i>
+                        <p class="text-6xl font-black gradient-text mb-2">5,000+</p>
+                        <p class="text-gray-700 font-semibold uppercase tracking-wider">New Jobs Created</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <hr class="border-t-2 border-purple-300 mx-auto w-11/12">
+
+    <!-- 6. NEW SECTION: Journey / Roadmap -->
+<section id="roadmap" class="relative py-24 bg-gradient-to-b from-purple-950 via-purple-900 to-purple-950 overflow-hidden">
+  <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+  <div class="container mx-auto text-center relative z-10 px-6">
+    <!-- Title -->
+    <h2 class="text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500 animate-fade-in-down">
+      The Kase Acceleration Journey
+    </h2>
+    <p class="max-w-3xl mx-auto text-lg text-gray-200 mb-20 animate-fade-in">
+      Every Kase program follows a proven, intensive 3-phase roadmap designed to take your venture from validation to global readiness.
+    </p>
+
+    <!-- Roadmap Grid -->
+    <div class="grid md:grid-cols-3 gap-16 relative">
+      <!-- Connector line -->
+      <div class="hidden md:block absolute top-1/2 left-0 right-0 border-t-4 border-yellow-500 transform -translate-y-1/2 z-0"></div>
+
+      <!-- PHASE 1 -->
+      <div class="roadmap-step relative bg-purple-800/40 backdrop-blur-lg rounded-2xl shadow-2xl p-10 hover:scale-105 hover:shadow-yellow-500/50 transition-all duration-500 z-10 animate-slide-up">
+        <div class="mb-6 flex justify-center">
+          <div class="p-5 rounded-full bg-gradient-to-tr from-yellow-500 to-yellow-400 text-purple-950 shadow-lg animate-pulse">
+            <i class="fas fa-cubes text-3xl"></i>
+          </div>
+        </div>
+        <h3 class="text-2xl font-black text-white mb-3 text-center">Phase 1: Foundation</h3>
+        <p class="text-yellow-400 font-semibold uppercase tracking-widest text-sm mb-4 text-center">Months 1–3</p>
+        <p class="text-gray-300 text-center mb-6">
+          <strong>Focus:</strong> Refine your value proposition, validate product-market fit, and establish key KPIs through user research.
+        </p>
+        <ul class="text-gray-200 text-sm space-y-3 flex flex-col items-start md:items-center md:text-left">
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Initial Investment Check</li>
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Legal &amp; IP Review</li>
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Core Team Building</li>
+        </ul>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="roadmap-step relative bg-purple-800/40 backdrop-blur-lg rounded-2xl shadow-2xl p-10 hover:scale-105 hover:shadow-yellow-500/50 transition-all duration-500 z-10 animate-slide-up delay-200">
+        <div class="mb-6 flex justify-center">
+          <div class="p-5 rounded-full bg-gradient-to-tr from-yellow-500 to-yellow-400 text-purple-950 shadow-lg animate-pulse">
+            <i class="fas fa-shipping-fast text-3xl"></i>
+          </div>
+        </div>
+        <h3 class="text-2xl font-black text-white mb-3 text-center">Phase 2: Acceleration</h3>
+        <p class="text-yellow-400 font-semibold uppercase tracking-widest text-sm mb-4 text-center">Months 4–6</p>
+        <p class="text-gray-300 text-center mb-6">
+          <strong>Focus:</strong> Scale your technology, execute growth marketing, and optimize operations for sustained expansion.
+        </p>
+        <ul class="text-gray-200 text-sm space-y-3 flex flex-col items-start md:items-center md:text-left">
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Growth Hacking Labs</li>
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Advanced Impact Modeling</li>
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> International Pilot Preparation</li>
+        </ul>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="roadmap-step relative bg-purple-800/40 backdrop-blur-lg rounded-2xl shadow-2xl p-10 hover:scale-105 hover:shadow-yellow-500/50 transition-all duration-500 z-10 animate-slide-up delay-400">
+        <div class="mb-6 flex justify-center">
+          <div class="p-5 rounded-full bg-gradient-to-tr from-yellow-500 to-yellow-400 text-purple-950 shadow-lg animate-pulse">
+            <i class="fas fa-bullhorn text-3xl"></i>
+          </div>
+        </div>
+        <h3 class="text-2xl font-black text-white mb-3 text-center">Phase 3: Launch & Close</h3>
+        <p class="text-yellow-400 font-semibold uppercase tracking-widest text-sm mb-4 text-center">Months 7–9</p>
+        <p class="text-gray-300 text-center mb-6">
+          <strong>Focus:</strong> Prepare your investor pitch, secure follow-on funding, and present at the Kase Global Demo Day to top-tier VCs.
+        </p>
+        <ul class="text-gray-200 text-sm space-y-3 flex flex-col items-start md:items-center md:text-left">
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Global Demo Day</li>
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Investor 1:1 Meetings</li>
+          <li class="flex items-center gap-3"><i class="fas fa-dot-circle text-yellow-500 text-sm"></i> Strategic Partnership Finalization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Light Effects -->
+  <div class="absolute top-0 left-0 w-64 h-64 bg-yellow-500/10 blur-3xl rounded-full animate-float-slow"></div>
+  <div class="absolute bottom-10 right-10 w-72 h-72 bg-purple-400/10 blur-3xl rounded-full animate-float"></div>
+</section>
+
+<!-- Custom Animations -->
+<style>
+  @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fade-in-down { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slide-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+  @keyframes float-slow { 0%,100% { transform: translateY(0px) translateX(0); } 50% { transform: translateY(-30px) translateX(15px); } }
+
+  .animate-fade-in { animation: fade-in 1.2s ease forwards; }
+  .animate-fade-in-down { animation: fade-in-down 1.2s ease forwards; }
+  .animate-slide-up { animation: slide-up 1.4s ease forwards; }
+  .animate-slide-up.delay-200 { animation-delay: 0.2s; }
+  .animate-slide-up.delay-400 { animation-delay: 0.4s; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-slow { animation: float-slow 10s ease-in-out infinite; }
+</style>
+
+
+<!-- 7. Final CTA -->
+<section class="py-24 px-6 text-center">
+  <div class="max-w-4xl mx-auto p-12 rounded-3xl bg-white border-4 border-purple-300 shadow-xl shadow-purple-500/10">
+    <h2 class="text-5xl font-extrabold mb-6 gradient-text">Ready to Accelerate Your Impact?</h2>
+    <p class="text-xl text-gray-700 mb-10">
+      The next cohort application window is opening soon. Find out which track is the perfect match for your venture.
+    </p>
+    <div class="flex space-x-6 justify-center">
+      <!-- Check Eligibility -->
+      <a href="eligibility.html" class="btn primary inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-semibold transition-transform transform hover:scale-105">
+        <i class="fas fa-hand-point-right mr-2"></i> Check Eligibility
+      </a>
+
+      <!-- Book Info Session -->
+      <button id="bookSessionBtn" class="btn outline inline-flex items-center px-6 py-3 border-2 border-purple-600 text-purple-700 hover:bg-purple-600 hover:text-white rounded-full font-semibold transition-transform transform hover:scale-105">
+        <i class="fas fa-calendar-alt mr-2"></i> Book an Info Session
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="sessionModal" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50">
+  <div class="bg-white rounded-2xl max-w-lg w-full p-8 relative shadow-xl">
+    <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+    <h3 class="text-2xl font-bold mb-4">Book Your Info Session</h3>
+    <form id="sessionForm" class="space-y-4">
+      <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <input type="tel" name="phone" placeholder="Phone (+91)" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <input type="date" name="date" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-transform transform hover:scale-105">Book Now</button>
+    </form>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-6 right-6 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-500 z-50">
+  Session booked successfully!
+</div>
+<!-- Scripts -->
+<script>
+  const bookBtn = document.getElementById('bookSessionBtn');
+  const modal = document.getElementById('sessionModal');
+  const closeModal = document.getElementById('closeModal');
+  const toast = document.getElementById('toast');
+  const form = document.getElementById('sessionForm');
+
+  // Open modal
+  bookBtn.addEventListener('click', () => modal.classList.remove('hidden', 'opacity-0'));
+
+  // Close modal
+  closeModal.addEventListener('click', () => modal.classList.add('hidden', 'opacity-0'));
+
+  // Submit form
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // Send data to backend
+      const response = await fetch('/book-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await response.json();
+
+      if(result.success){
+        // Show toast
+        toast.textContent = `Session booked for ${data.name} on ${data.date}`;
+        toast.classList.add('opacity-100');
+        setTimeout(() => toast.classList.remove('opacity-100'), 4000);
+
+        modal.classList.add('hidden', 'opacity-0');
+        form.reset();
+      } else {
+        alert("Failed to book session. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error booking session. Try again!");
+    }
+  });
+</script>
+
+
+    </main>
+
+    <footer class="py-12 px-6 border-t border-purple-300 bg-gray-100">
+        <div class="container mx-auto text-center md:flex md:justify-between md:items-center">
+            <p class="text-gray-600 text-sm mb-4 md:mb-0">&copy; 2025 Kase Global Accelerator Program. All Rights Reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-600 hover:text-yellow-600 transition-colors" aria-label="Follow us on Twitter"><i class="fab fa-twitter text-xl"></i></a>
+                <a href="#" class="text-gray-600 hover:text-yellow-600 transition-colors" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin-in text-xl"></i></a>
+                <a href="#" class="text-gray-600 hover:text-yellow-600 transition-colors" aria-label="Visit our Blog"><i class="fas fa-blog text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
